@@ -6,7 +6,18 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
+import subprocess
+import sys
 
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install("streamlit-option-menu")
+
+# Now you can import the package
+from streamlit_option_menu import option_menu
+
+# Rest of your code
 diabetes_model = pickle.load(open('C:/Users/vasan/OneDrive/Desktop/MultipleDiseases/dibetes_model.sav','rb'))
 
 heart_model = pickle.load(open('C:/Users/vasan/OneDrive/Desktop/MultipleDiseases/heart_disease_model.sav','rb'))
