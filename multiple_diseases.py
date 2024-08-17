@@ -12,10 +12,12 @@ import sys
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
-install("streamlit-option-menu")
+try:
+    from streamlit_option_menu import option_menu
+except ImportError:
+    install("streamlit-option-menu")
+    from streamlit_option_menu import option_menu
 
-# Now you can import the package
-from streamlit_option_menu import option_menu
 
 # Rest of your code
 diabetes_model = pickle.load(open('C:/Users/vasan/OneDrive/Desktop/MultipleDiseases/dibetes_model.sav','rb'))
