@@ -177,7 +177,7 @@ if select == "Data Visualization":
             x_axis = st.selectbox("Select the Column for X-axis",options = columns+["None"],index = None)
             y_axis = st.selectbox("Select the Column for Y-axis",options = columns+["None"],index = None)
 
-        plot_list = ["Line Plot","Bar Chart","Scatter Plot","Distribution Plot","Count Plot"]
+        plot_list = ["Line Plot","Bar Chart","Scatter Plot","Distribution Plot"]
 
         selected_plot = st.selectbox("Select the Plot type",options = plot_list,index = None)
 
@@ -193,8 +193,8 @@ if select == "Data Visualization":
             sns.scatterplot(x = df[x_axis],y = df[y_axis], ax = ax)
         elif selected_plot == "Distribution Plot":
             sns.histplot(x = df[x_axis],y = df[y_axis],kde = True, ax = ax)
-        elif selected_plot == "Count Plot":
-            sns.countplot(x = df[x_axis],y = df[y_axis], ax = ax)
+        # elif selected_plot == "Count Plot":
+        #     sns.countplot(x = df[x_axis],y = df[y_axis], ax = ax)
 
         #aduj label size
         ax.tick_params(axis="x",labelsize = 10)
