@@ -208,11 +208,11 @@ if select == "Data Visualization":
         st.pyplot(fig)
 
 if select == "About":
-    st.title("About Our App")
+    st.title("About App")
 
     st.markdown("Welcome to HealthPredict, your trusted companion for proactive health management. Our innovative application harnesses the power of Machine Learning to predict multiple diseases, focusing specifically on diabetes and heart diseases.")
     
-    st.markdown("<h3>Our Mission</h3>",unsafe_allow_html=True)
+    st.markdown("<h3>Mission</h3>",unsafe_allow_html=True)
 
     st.markdown("At HealthPredict, our mission is to empower individuals with the knowledge and tools they need to take charge of their health. By providing accurate and timely predictions, we aim to help users make informed decisions and adopt healthier lifestyles.")
     st.markdown("<h3>How It Works</h3>",unsafe_allow_html=True)
