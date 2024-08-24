@@ -27,21 +27,21 @@ if (select == "Diabetes Prediction"):
     col1,col2,col3 = st.columns(3)
 
     with col1:
-        Pregnancies = st.text_input("No of  Pregnancies")
+        Pregnancies = st.text_input("No of  Pregnancies",placeholder = 'e.g. 2')
     with col2:
-        Glucose = st.text_input("Glucose Level")
+        Glucose = st.text_input("Glucose Level",placeholder = 'e.g. 120')
     with col3:
-        BloodPressure = st.text_input("BloodPressure Level")
+        BloodPressure = st.text_input("BloodPressure Level",placeholder = 'e.g. 70')
     with col1:
-        SkinThickness = st.text_input("SkinThickness Value")
+        SkinThickness = st.text_input("SkinThickness Value",placeholder = 'e.g. 20')
     with col2:
-        Insulin = st.text_input("Insulin Level")
+        Insulin = st.text_input("Insulin Level",placeholder = 'e.g. 80')
     with col3:
-        BMI = st.text_input("BMI Value")
+        BMI = st.text_input("BMI Value",placeholder = 'e.g. 30')
     with col1:
-        DiabetesPedigreeFunction = st.text_input("DiabetesPedigreeFunction Value")
+        DiabetesPedigreeFunction = st.text_input("DiabetesPedigreeFunction Value",placeholder = 'e.g. 0.4532')
     with col2:
-        Age = st.text_input("Age")
+        Age = st.text_input("Age",placeholder = 'e.g. 30')
 
     diab_digosis = ''
 
@@ -70,54 +70,44 @@ if select == 'Heart Diseases Prediction':
     col1, col2 = st.columns(2)
 
     with col1:
-        age = st.text_input('Age')
+        age = st.text_input('Age',placeholder = 'e.g. 35')
 
     with col2:
-        sex = st.text_input('Sex')
+        sex = st.text_input('Sex',placeholder ='  0: Female     1: Male')
 
     with col1:
-        cp = st.text_input('Chest Pain types')
-        # option = ["0: Typical angina","1: Atypical angina","2: Non-anginal pain","3: Asymptomatic"]
-        # select = st.selectbox("Chest Pain Types",option)
-        # if(select == '0: Typical angina'):
-        #     cp =0
-        # elif(select == '1: Atypical angina'):
-        #     cp = 1
-        # elif(select == '2: Non-anginal pain'):
-        #     cp = 2
-        # elif(select == '3: Asymptomatic'):
-        #     cp = 3
+        cp = st.text_input('Chest Pain types',placeholder ='0: Typical angina 1: Atypical angina 2: Non-anginal pain 3: Asymptomatic')
 
     with col2:
-        trestbps = st.text_input('Resting Blood Pressure')
+        trestbps = st.text_input('Resting Blood Pressure',placeholder = 'mm Hg (millimeters of mercury)')
 
     with col1:
-        chol = st.text_input('Serum Cholestoral in mg/dl')
+        chol = st.text_input('Serum Cholestoral',placeholder = 'mg/dl (milligrams per deciliter)')
 
     with col2:
-        fbs = st.text_input('Fasting Blood Sugar > 120 mg/dl')
+        fbs = st.text_input('Fbs (Fasting Blood Sugar):',placeholder = '0: Fbs ≤ 120 mg/dl    1: Fbs > 120 mg/dl')
 
     with col1:
-        restecg = st.text_input('Resting Electrocardiographic results')
+        restecg = st.text_input('Restecg (Resting Electrocardiographic Results)',placeholder = '0: Normal 1: Having ST-T wave abnormality  2: Showing probable')
 
     with col2:
-        thalach = st.text_input('Maximum Heart Rate achieved')
+        thalach = st.text_input('Maximum Heart Rate achieved',placeholder = 'e.g. 172')
 
     with col1:
-        exang = st.text_input('Exercise Induced Angina')
+        exang = st.text_input('Exercise Induced Angina',placeholder = '0: No    1: Yes')
 
     with col2:
-        oldpeak = st.text_input('ST depression induced by exercise')
+        oldpeak = st.text_input('ST depression induced by exercise',placeholder = 'e.g.  1.4')
 
     with col1:
-        slope = st.text_input('Slope of the peak exercise ST segment')
+        slope = st.text_input('Slope of the peak exercise ST segment',placeholder = '0: Upsloping    1: Flat    2: Downsloping')
 
     with col2:
-        ca = st.text_input('Major vessels colored by flourosopy')
+        ca = st.text_input('Major vessels colored by flourosopy',placeholder = 'number of major vessels (0–3)')
 
     with col1:
         #st.markdown('Thalium stress test result:0: Normal 1: Fixed defect 2: Reversible defect 3: Not described',unsafe_allow_html = True)
-        thal = st.text_input('Thalium stress test result: 0: Normal 1: Fixed defect 2: Reversible defect 3: Not described''')
+        thal = st.text_input('Thalium stress test result:',placeholder = '1: Normal    2: Fixed defect   3: Reversible defect')
 
     # code for Prediction
     heart_diagnosis = ''
