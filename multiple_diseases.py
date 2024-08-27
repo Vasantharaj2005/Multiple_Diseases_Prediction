@@ -129,13 +129,24 @@ if select == "Data Visualization":
     st.title("📊 Data Visulization")
 
     work_dir = os.path.dirname(os.path.abspath(__file__))
+    #folder_path = "/mount/src/multiple_diseases_prediction/data"  # Adjust this path
     folder_path = f"C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction"
+    if os.path.exists(folder_path):
+        file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
+        if file_list:
+            selected_file = st.selectbox("Select the Files", file_list)
+        else:
+            st.warning("No CSV files found in the directory.")
+    else:
+        st.error(f"The directory {folder_path} does not exist.")
+
+    #folder_path = f"C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction"
 
 
-    file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
+    #file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
 
      
-    selected_file = st.selectbox("Select the Files",file_list,index = None)
+    #selected_file = st.selectbox("Select the Files",file_list,index = None)
     if selected_file:
         #gethig the complete path of the selected files
         
