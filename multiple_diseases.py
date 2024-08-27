@@ -218,6 +218,7 @@ if select == "About":
     st.markdown("<b>Accuracy: </b>Our app uses state-of-the-art Machine Learning models trained on extensive datasets to ensure high accuracy in disease prediction.",unsafe_allow_html=True)
     st.markdown("<b>Proactive Health Management: </b>By identifying potential health issues early, you can take preventive measures and seek medical advice when necessary.",unsafe_allow_html=True)
     st.markdown("<b>Continuous Improvement: </b>We are committed to regularly updating our algorithms and features to provide the best possible service to our users.",unsafe_allow_html=True)
+    st.markdown("<h6><center>Copyright © Vasantha Raj - All rights reserved</center></h6>",unsafe_allow_html=True)
 
 
 
