@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Rest of your code
-diabetes_model = pickle.load(open("C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction/dibetes_model.sav",'rb'))
+diabetes_model = pickle.load(open("C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction/diabetes_model.sav",'rb'))
 
 heart_model = pickle.load(open('C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction/heart_disease_model.sav','rb'))
 
