@@ -7,10 +7,17 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 
-# Rest of your code
-diabetes_model = pickle.load(open("diabetes_model.sav",'rb'))
+try:
+    diabetes_model = pickle.load(open("diabetes_model.sav", 'rb'))
+    heart_model = pickle.load(open('heart_disease_model.sav','rb'))
+    print("Model loaded successfully.")
+except Exception as e:
+    print(f"Error: {e}")
 
-heart_model = pickle.load(open('heart_disease_model.sav','rb'))
+
+# diabetes_model = pickle.load(open("diabetes_model.sav",'rb'))
+
+# heart_model = pickle.load(open('heart_disease_model.sav','rb'))
 
 # sidebar for navigation
 with st.sidebar:
