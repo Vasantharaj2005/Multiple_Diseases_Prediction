@@ -130,7 +130,7 @@ if select == "Data Visualization":
 
     work_dir = os.path.dirname(os.path.abspath(__file__))
     #folder_path = "/mount/src/multiple_diseases_prediction/data"  # Adjust this path
-    folder_path = f"C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction/Data"
+    folder_path = f"./Data"
     if os.path.exists(folder_path):
         file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
         if file_list:
