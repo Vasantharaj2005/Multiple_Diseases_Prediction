@@ -6,6 +6,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
+import sklearn
 
 try:
     diabetes_model = pickle.load(open("diabetes_model.sav", 'rb'))
