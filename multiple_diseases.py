@@ -133,7 +133,13 @@ if select == "Data Visualization":
     # folder_path = f"{work_dir}/Multiple_Diseases_Prediction"
     folder_path = f"C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction"
 
-    file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
+    if os.path.exists(folder_path):
+        file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
+    else:
+        print(f"Directory {folder_path} does not exist.")
+
+
+    #file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
     #select box
      
     selected_file = st.selectbox("Select the Files",file_list,index = None)
