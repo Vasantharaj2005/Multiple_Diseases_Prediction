@@ -24,41 +24,33 @@ with st.sidebar:
 if (select == "Diabetes Prediction"):
     st.title("Diabetes Prediction using ML")
 
-    col1,col2,col3 = st.columns(3)
+    col1,col2 = st.columns(2)
 
     with col1:
         Pregnancies = st.text_input("No of  Pregnancies",placeholder = 'e.g. 2')
     with col2:
         Glucose = st.text_input("Glucose Level",placeholder = 'e.g. 120')
-    with col3:
-        BloodPressure = st.text_input("BloodPressure Level",placeholder = 'e.g. 70')
     with col1:
-        SkinThickness = st.text_input("SkinThickness Value",placeholder = 'e.g. 20')
+        BloodPressure = st.text_input("BloodPressure Level",placeholder = 'e.g. 70')
     with col2:
+        SkinThickness = st.text_input("SkinThickness Value",placeholder = 'e.g. 20')
+    with col1:
         Insulin = st.text_input("Insulin Level",placeholder = 'e.g. 80')
-    with col3:
+    with col2:
         BMI = st.text_input("BMI Value",placeholder = 'e.g. 30')
     with col1:
         DiabetesPedigreeFunction = st.text_input("DiabetesPedigreeFunction Value",placeholder = 'e.g. 0.4532')
     with col2:
         Age = st.text_input("Age",placeholder = 'e.g. 30')
 
-    diab_digosis = ''
-
     if st.button("Diabetes Test Result"):
         diab_prediction = diabetes_model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
 
         if(diab_prediction[0] == 1):
-            diab_digosis = "The person is Diabetic"
+            st.error("The person is Diabetic")
         
         else:
-            diab_digosis = "The person is Non Diabetic"
-
-    if( diab_digosis == "The person is Diabetic"):
-        st.warning(diab_digosis)
-    else:
-        st.success(diab_digosis)
-
+            st.success("The person is Non Diabetic")
 
 
 # Heart Disease Prediction Page
@@ -110,8 +102,6 @@ if select == 'Heart Diseases Prediction':
         thal = st.text_input('Thalium stress test result:',placeholder = '1: Normal    2: Fixed defect   3: Reversible defect')
 
     # code for Prediction
-    heart_diagnosis = ''
-
     # creating a button for Prediction
 
     if st.button('Heart Disease Test Result'):
@@ -123,22 +113,13 @@ if select == 'Heart Diseases Prediction':
         heart_prediction = heart_model.predict([user_input])
 
         if heart_prediction[0] == 1:
-            heart_diagnosis = 'The person is having heart disease'
+            st.error('The person is having heart disease')
         else:
-            heart_diagnosis = 'The person does not have any heart disease'
-
-    st.success(heart_diagnosis)
-
+            st.success('The person does not have any heart disease')
 
 if select == "Data Visualization":
-    #page configuration
-    # st.set_page_config(page_title = "Visualization Page",
-    #               layout = "centered",
-    #               page_icon ="📊"
-    #               )
-
     #page title
-    st.title("📊 Data Visuliser - Web App")
+    st.title("📊 Data Visulization")
 
     work_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -220,3 +201,40 @@ if select == "About":
     st.markdown("<b>Accuracy: </b>Our app uses state-of-the-art Machine Learning models trained on extensive datasets to ensure high accuracy in disease prediction.",unsafe_allow_html=True)
     st.markdown("<b>Proactive Health Management: </b>By identifying potential health issues early, you can take preventive measures and seek medical advice when necessary.",unsafe_allow_html=True)
     st.markdown("<b>Continuous Improvement: </b>We are committed to regularly updating our algorithms and features to provide the best possible service to our users.",unsafe_allow_html=True)
+
+
+
+
+
+# Inject CSS to change font style and other properties
+st.markdown(
+    """
+    <style>
+    /* Change the font style for the entire app */
+    body {
+        font-family: serif;
+
+    }
+
+    /* Change the font style for specific elements */
+    h1,h3 {
+        font-family: serif;
+        # color: darkblue;
+    }
+
+    .stButton button {
+        font-family: sans-serif;
+        font-size: 16px;
+        color: white;
+        background-color: green;
+    }
+
+    /* Additional styling can be added here */
+    .stMarkdown {
+        font-size: 30px;
+        # color: red;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
