@@ -15,11 +15,6 @@ try:
 except Exception as e:
     print(f"Error: {e}")
 
-
-# diabetes_model = pickle.load(open("diabetes_model.sav",'rb'))
-
-# heart_model = pickle.load(open('heart_disease_model.sav','rb'))
-
 # sidebar for navigation
 with st.sidebar:
     select = option_menu(
@@ -32,6 +27,7 @@ with st.sidebar:
 if (select == "Diabetes Prediction"):
     st.title("Diabetes Prediction using ML")
 
+    #Split the column into two columns
     col1,col2 = st.columns(2)
 
     with col1:
@@ -106,7 +102,6 @@ if select == 'Heart Diseases Prediction':
         ca = st.text_input('Major vessels colored by flourosopy',placeholder = 'number of major vessels (0–3)')
 
     with col1:
-        #st.markdown('Thalium stress test result:0: Normal 1: Fixed defect 2: Reversible defect 3: Not described',unsafe_allow_html = True)
         thal = st.text_input('Thalium stress test result:',placeholder = '1: Normal    2: Fixed defect   3: Reversible defect')
 
     # code for Prediction
@@ -130,7 +125,6 @@ if select == "Data Visualization":
     st.title("📊 Data Visulization")
 
     work_dir = os.path.dirname(os.path.abspath(__file__))
-    #folder_path = "/mount/src/multiple_diseases_prediction/data"  # Adjust this path
     folder_path = f"./Data"
     if os.path.exists(folder_path):
         file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
@@ -140,16 +134,9 @@ if select == "Data Visualization":
             st.warning("No CSV files found in the directory.")
     else:
         st.error(f"The directory {folder_path} does not exist.")
-
-    #folder_path = f"C:/Users/vasan/OneDrive/Desktop/Git MDp/Multiple_Diseases_Prediction"
-
-
-    #file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
-
-     
-    #selected_file = st.selectbox("Select the Files",file_list,index = None)
     if selected_file:
-        #gethig the complete path of the selected files
+        
+        #geting the complete path of the selected files
         
         file_path = os.path.join(folder_path,selected_file)
         
@@ -182,9 +169,7 @@ if select == "Data Visualization":
             sns.scatterplot(x = df[x_axis],y = df[y_axis], ax = ax)
         elif selected_plot == "Distribution Plot":
             sns.histplot(x = df[x_axis],y = df[y_axis],kde = True, ax = ax)
-        # elif selected_plot == "Count Plot":
-        #     sns.countplot(x = df[x_axis],y = df[y_axis], ax = ax)
-
+            
         #aduj label size
         ax.tick_params(axis="x",labelsize = 10)
         ax.tick_params(axis="y",labelsize = 10)
