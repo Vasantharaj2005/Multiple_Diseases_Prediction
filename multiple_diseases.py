@@ -7,20 +7,21 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 import sklearn
+from sklearn.preprocessing import StandardScaler
 
 try:
     diabetes_model = pickle.load(open("diabetes_model.sav", 'rb'))
     heart_model = pickle.load(open('heart_disease_model.sav','rb'))
+    parkinsons_model = pickle.load(open('parkinsons_disease_model.sav','rb'))
     print("Model loaded successfully.")
 except Exception as e:
     print(f"Error: {e}")
-
 # sidebar for navigation
 with st.sidebar:
     select = option_menu(
         "Multiple Diseases Prediction",
-        ["Diabetes Prediction","Heart Diseases Prediction","Data Visualization","About"],
-        icons = ['activity','heart-pulse-fill','file-bar-graph','file-person'],
+        ["Diabetes Prediction","Heart Diseases Prediction","Parknison Prediction","About"],
+        icons = ['activity','heart-pulse-fill','bi bi-person-walking','file-person'],
         default_index =0)
 
 
@@ -120,66 +121,95 @@ if select == 'Heart Diseases Prediction':
         else:
             st.success('The person does not have any heart disease')
 
-if select == "Data Visualization":
-    #page title
-    st.title("📊 Data Visulization")
 
-    work_dir = os.path.dirname(os.path.abspath(__file__))
-    folder_path = f"./Data"
-    if os.path.exists(folder_path):
-        file_list = [f for f in os.listdir(folder_path) if f.endswith(".csv")]
-        if file_list:
-            selected_file = st.selectbox("Select the Files", file_list)
+
+if select == 'Parknison Prediction':
+
+    # page title
+    st.title("""Parkinson's Disease Prediction using ML""")
+
+    col1,col2 = st.columns(2)
+
+    with col1:
+        Fo = st.text_input('MDVP:Fo(Hz)',placeholder = 'MDVP:Fo(Hz)')
+
+    with col2:
+        Fhi = st.text_input('MDVP:Fhi(Hz)',placeholder ='MDVP:Fhi(Hz)')
+
+    with col1:
+        Flo = st.text_input('MDVP:Flo(Hz)',placeholder ='MDVP:Flo(Hz)')
+
+    with col2:
+        Jitter = st.text_input('MDVP:Jitter(%)',placeholder = 'MDVP:Jitter(%)')
+
+    with col1:
+        Abs = st.text_input('MDVP:Jitter(Abs)',placeholder = 'MDVP:Jitter(Abs)')
+
+    with col2:
+        RAP = st.text_input('MDVP:RAP',placeholder = 'MDVP:RAP')
+
+    with col1:
+        PPQ = st.text_input('MDVP:PPQ',placeholder = 'MDVP:PPQ')
+
+    with col2:
+        DDP = st.text_input('Jitter:DDP',placeholder = 'Jitter:DDP')
+
+    with col1:
+        Shimmer = st.text_input('MDVP:Shimmer',placeholder = 'MDVP:Shimmer')
+
+    with col2:
+        db = st.text_input('MDVP:Shimmer(dB)',placeholder = 'MDVP:Shimmer(dB)')
+
+    with col1:
+        APQ3 = st.text_input('Shimmer:APQ3',placeholder = 'Shimmer:APQ3')
+
+    with col2:
+        APQ5 = st.text_input('Shimmer:APQ5',placeholder = 'Shimmer:APQ5')
+
+    with col1:
+        APQ = st.text_input('MDVP:APQ',placeholder = 'MDVP:APQ')
+
+    with col2:
+        DDA = st.text_input('Shimmer:DDA',placeholder = 'Shimmer:DDA')
+
+    with col1:
+        NHR = st.text_input('NHR',placeholder = 'NHR')
+
+    with col2:
+        HNR = st.text_input('HNR',placeholder = 'HNR')
+
+    with col1:
+        RPDE = st.text_input('RPDE',placeholder = 'RPDE')
+
+    with col2:
+        DFA = st.text_input('DFA',placeholder = 'DFA')
+
+    with col1:
+        spread1 = st.text_input('spread1',placeholder = 'spread1')
+
+    with col2:
+        spread2 = st.text_input('spread2',placeholder = 'spread2')
+
+    with col1:
+        D2 = st.text_input('D2',placeholder = 'D2')
+
+    with col2:
+        PPE = st.text_input('PPE',placeholder = 'PPE')
+
+    if st.button('Heart Disease Test Result'):
+
+        user_input = [Fo,Fhi,Flo,Jitter,Abs,RAP,PPQ,DDP,Shimmer,db,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]
+
+        input_data_reshaped = user_input.reshape(1,-1)
+
+        std_data = scaler.transform(input_data_reshaped)
+        
+        prediction = parkinsons_model.predict(std_data)
+        
+        if(prediction[0]==1):
+            st.error("The person is affcted by the Parkinsons")
         else:
-            st.warning("No CSV files found in the directory.")
-    else:
-        st.error(f"The directory {folder_path} does not exist.")
-    if selected_file:
-        
-        #geting the complete path of the selected files
-        
-        file_path = os.path.join(folder_path,selected_file)
-        
-        df = pd.read_csv(file_path)
-        
-        col1,col2 = st.columns(2)
-        columns = df.columns.tolist()
-
-        with col1:
-            st.write("")
-            st.write(df.head())
-
-        with col2:
-            x_axis = st.selectbox("Select the Column for X-axis",options = columns+["None"],index = None)
-            y_axis = st.selectbox("Select the Column for Y-axis",options = columns+["None"],index = None)
-
-        plot_list = ["Line Plot","Bar Chart","Scatter Plot","Distribution Plot"]
-
-        selected_plot = st.selectbox("Select the Plot type",options = plot_list,index = None)
-
-    if st.button("Generate Plot"):
-
-        fig,ax = plt.subplots(figsize = (6,4))
-
-        if selected_plot == "Line Plot":
-            sns.lineplot(x = df[x_axis],y = df[y_axis], ax = ax)
-        elif selected_plot == "Bar Chart":
-            sns.barplot(x = df[x_axis],y = df[y_axis], ax = ax)
-        elif selected_plot == "Scatter Plot":
-            sns.scatterplot(x = df[x_axis],y = df[y_axis], ax = ax)
-        elif selected_plot == "Distribution Plot":
-            sns.histplot(x = df[x_axis],y = df[y_axis],kde = True, ax = ax)
-            
-        #aduj label size
-        ax.tick_params(axis="x",labelsize = 10)
-        ax.tick_params(axis="y",labelsize = 10)
-        
-        plt.title(f"{selected_plot} of {x_axis} and {y_axis}",fontsize = 12)
-
-        plt.xlabel(x_axis,fontsize = 10)
-        plt.ylabel(y_axis,fontsize = 10)
-        
-        st.pyplot(fig)
+            st.success("The person is does not affcted by the Parkinsons")
 
 if select == "About":
     st.title("About App")
