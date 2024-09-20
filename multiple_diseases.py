@@ -203,10 +203,10 @@ if select == 'Parknison Prediction':
         
         input_data_reshaped = user_input.reshape(1,-1)
 
-        scaler = StandardScaler()
-        std_data = scaler.transform(input_data_reshaped)
+        # scaler = StandardScaler()
+        # std_data = scaler.transform(input_data_reshaped)
         
-        prediction = parkinsons_model.predict(std_data)
+        prediction = parkinsons_model.predict(input_data_reshaped)
         
         if(prediction[0]==1):
             st.error("The person is affcted by the Parkinsons")
