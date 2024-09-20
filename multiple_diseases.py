@@ -203,6 +203,7 @@ if select == 'Parknison Prediction':
         
         input_data_reshaped = user_input.reshape(1,-1)
 
+        scaler = StandardScaler()
         std_data = scaler.transform(input_data_reshaped)
         
         prediction = parkinsons_model.predict(std_data)
