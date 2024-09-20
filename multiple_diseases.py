@@ -199,7 +199,8 @@ if select == 'Parknison Prediction':
     if st.button('Heart Disease Test Result'):
 
         user_input = [Fo,Fhi,Flo,Jitter,Abs,RAP,PPQ,DDP,Shimmer,db,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]
-
+        user_input = np.array(user_input)
+        
         input_data_reshaped = user_input.reshape(1,-1)
 
         std_data = scaler.transform(input_data_reshaped)
