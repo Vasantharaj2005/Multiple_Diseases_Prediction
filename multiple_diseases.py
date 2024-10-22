@@ -13,6 +13,7 @@ try:
     diabetes_model = pickle.load(open("diabetes_model.sav", 'rb'))
     heart_model = pickle.load(open('heart_disease_model.sav','rb'))
     parkinsons_model = pickle.load(open('parkinsons_disease_model.sav','rb'))
+    kidney_model = pickle.load(open('ChronicKidneyDisease.sav','rb'))
     print("Model loaded successfully.")
 except Exception as e:
     print(f"Error: {e}")
@@ -20,13 +21,13 @@ except Exception as e:
 with st.sidebar:
     select = option_menu(
         "Multiple Diseases Prediction",
-        ["Diabetes Prediction","Heart Diseases Prediction","Parknison Prediction","About"],
-        icons = ['activity','heart-pulse-fill','bi bi-person-walking','file-person'],
+        ["Diabetes Prediction","Heart Diseases Prediction","Parknison Prediction",'Chronic Kidney Disease Prediction',"About"],
+        icons = ['activity','heart-pulse-fill','bi bi-person-walking','bi bi-lungs-fill','file-person'],
         default_index =0)
 
 
 if (select == "Diabetes Prediction"):
-    st.title("Diabetes Prediction using ML")
+    st.title("Diabetes Prediction")
 
     #Split the column into two columns
     col1,col2 = st.columns(2)
@@ -50,17 +51,14 @@ if (select == "Diabetes Prediction"):
 
     if st.button("Diabetes Test Result"):
         diab_prediction = diabetes_model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
-
         if(diab_prediction[0] == 1):
             st.error("The person is Diabetic")
-        
         else:
             st.success("The person is Non Diabetic")
 
 
 # Heart Disease Prediction Page
 if select == 'Heart Diseases Prediction':
-
     # page title
     st.title('Heart Disease Prediction using ML')
 
@@ -68,65 +66,48 @@ if select == 'Heart Diseases Prediction':
 
     with col1:
         age = st.text_input('Age',placeholder = 'e.g. 35')
-
     with col2:
         sex = st.text_input('Sex',placeholder ='  0: Female     1: Male')
-
     with col1:
         cp = st.text_input('Chest Pain types',placeholder ='0: Typical angina 1: Atypical angina 2: Non-anginal pain 3: Asymptomatic')
-
     with col2:
         trestbps = st.text_input('Resting Blood Pressure',placeholder = 'mm Hg (millimeters of mercury)')
-
     with col1:
         chol = st.text_input('Serum Cholestoral',placeholder = 'mg/dl (milligrams per deciliter)')
-
     with col2:
         fbs = st.text_input('Fbs (Fasting Blood Sugar):',placeholder = '0: Fbs ≤ 120 mg/dl    1: Fbs > 120 mg/dl')
-
     with col1:
         restecg = st.text_input('Restecg (Resting Electrocardiographic Results)',placeholder = '0: Normal 1: Having ST-T wave abnormality  2: Showing probable')
-
     with col2:
         thalach = st.text_input('Maximum Heart Rate achieved',placeholder = 'e.g. 172')
-
     with col1:
         exang = st.text_input('Exercise Induced Angina',placeholder = '0: No    1: Yes')
-
     with col2:
         oldpeak = st.text_input('ST depression induced by exercise',placeholder = 'e.g.  1.4')
-
     with col1:
         slope = st.text_input('Slope of the peak exercise ST segment',placeholder = '0: Upsloping    1: Flat    2: Downsloping')
-
     with col2:
         ca = st.text_input('Major vessels colored by flourosopy',placeholder = 'number of major vessels (0–3)')
-
     with col1:
         thal = st.text_input('Thalium stress test result:',placeholder = '1: Normal    2: Fixed defect   3: Reversible defect')
 
     # code for Prediction
     # creating a button for Prediction
-
     if st.button('Heart Disease Test Result'):
 
         user_input = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
-
         user_input = [float(x) for x in user_input]
-
         heart_prediction = heart_model.predict([user_input])
-
         if heart_prediction[0] == 1:
             st.error('The person is having heart disease')
         else:
             st.success('The person does not have any heart disease')
 
 
-
 if select == 'Parknison Prediction':
 
     # page title
-    st.title("""Parkinson's Disease Prediction using ML""")
+    st.title("Parkinson's Disease Prediction")
 
     col1,col2 = st.columns(2)
 
@@ -213,29 +194,70 @@ if select == 'Parknison Prediction':
         else:
             st.success("The person is does not affcted by the Parkinsons")
 
+if select == 'Chronic Kidney Disease Prediction':
+    st.title("Chronic Kidney Disease Prediction")
+
+    col1,col2 = st.columns(2)
+    with col1 :
+        Bp = st.text_input('Blood Pressure',placeholder = 'e.g. 76.4550')
+    with col2:
+        Sg = st.text_input('Specific Gravity',placeholder = 'e.g. 1.017712')
+    with col1:
+        Al = st.text_input('Albumin',placeholder = 'e.g. 1.0150')
+    with col2:
+        Su = st.text_input('Sugar',placeholder = 'e.g. 0.395000')
+    with col1:
+        Rbc = st.text_input('Red Blood Cells',placeholder = 'e.g. 0.88250')
+    with col2:
+        Bu = st.text_input('Blood Urea',placeholder = 'e.g. 57.40550')
+    with col1:
+        Sc = st.text_input('Serum Creatinine',placeholder = 'e.g. 3.07235')
+    with col2:
+        Sod = st.text_input('Sodium',placeholder = 'e.g. 137.529025')
+    with col1:
+        Pot = st.text_input('Potassium',placeholder = 'e.g. 4.627850')
+    with col2:
+        Hemo = st.text_input('Hemoglobin',placeholder='e.g. 12.52690')
+    with col1:
+        Wbcc = st.text_input('White Blood Cell Count',placeholder = 'e.g. 8406.090')
+    with col2:
+        Rbcc = st.text_input('Red Blood Cell Count',placeholder = 'e.g. 4.708275')
+    with col1:
+        Htn = st.text_input('Hypertension',placeholder = 'e.g. 1 (Yes) or 0(No)')
+
+    if st.button('Kidney Disease Test Result'):
+        user_input = ['Bp','Sg','Al','Su','Rbc','Bu','Sc','Sod','Pot','Hemo','Wbcc','Rbcc','Htn']
+        user_input = np.array(user_input)
+        input_data_reshaped = user_input.reshape(1,-1)
+        prediction = kidney_model.predict(input_data_reshaped)
+        if(prediction[0]==1):
+            st.error("The person is affcted by the Chronic kidney Diseases")
+        else:
+            st.success("The person is does not affcted by Chronic kidney Diseases")
+
 if select == "About":
     st.title("About App")
 
-    st.markdown("Welcome to HealthPredict, your trusted companion for proactive health management. Our innovative application harnesses the power of Machine Learning to predict multiple diseases, focusing specifically on diabetes and heart diseases.")
+    st.markdown("Welcome to HealthPredict, your trusted companion for proactive health management. Our innovative application harnesses the power of Machine Learning to predict multiple diseases, focusing specifically on diabetes , parkinsons and heart diseases.")
     
-    st.markdown("<h3>Mission</h3>",unsafe_allow_html=True)
+    st.markdown("<h3>Key Features :</h3>",unsafe_allow_html=True)
+    # st.markdown("The Multiple Diseases Prediction app helps users check their risk for three major health conditions: diabetes, heart diseases, and Parkinson's disease. It uses machine learning to analyze health information and give a quick prediction.")
+    st.markdown("<b>Diabetes Prediction: </b>This feature checks if you are at risk of diabetes based on factors like blood sugar levels, age, weight, and more. It helps you know early if you should take action to manage your health.",unsafe_allow_html=True)
+    st.markdown("<b>Heart Disease Prediction: </b>The app looks at things like cholesterol, blood pressure, and heart rate to tell if you may be at risk of heart disease. Knowing this can help you make lifestyle changes or consult a doctor.",unsafe_allow_html=True)
+    st.markdown("<b>Parkinson’s Disease Prediction: </b>Parkinson’s is a disease that affects movement and coordination. The app analyzes symptoms like tremors or slow movements to check if you might be at risk. Early detection can help you take steps for better treatment.",unsafe_allow_html=True)
 
-    st.markdown("At HealthPredict, our mission is to empower individuals with the knowledge and tools they need to take charge of their health. By providing accurate and timely predictions, we aim to help users make informed decisions and adopt healthier lifestyles.")
-    st.markdown("<h3>How It Works</h3>",unsafe_allow_html=True)
+    st.markdown("<h3>How It Works :</h3>",unsafe_allow_html=True)
+    st.markdown("<li>You enter your health information into the app (like blood sugar, blood pressure, etc.).</li>",unsafe_allow_html=True)
+    st.markdown("<li>The app uses this information to give you a score, showing how likely you are to have each condition.</li>",unsafe_allow_html=True)
+    st.markdown("<li>Based on the results, you can decide to visit a doctor or make lifestyle changes</li>",unsafe_allow_html=True)
 
-    st.markdown("HealthPredict utilizes advanced Machine Learning algorithms to analyze your health data and predict the likelihood of developing diabetes or heart diseases. Our app takes into account various factors, such as medical history, lifestyle choices, and biometric data, to provide personalized insights and recommendations.")
+    st.markdown("<h3>Why Use the App?</h3>",unsafe_allow_html=True)
+    st.markdown("<li>Get quick and easy predictions for diabetes, heart disease, and Parkinson’s.</li>",unsafe_allow_html=True)
+    st.markdown("<li>Find out early if you are at risk and take steps to improve your health.</li>",unsafe_allow_html=True)
+    st.markdown("<li>Keep track of your health by checking regularly.</li>",unsafe_allow_html=True)
+    st.markdown("<li>Use the information to make better health decisions.</li>",unsafe_allow_html=True)
 
-    st.markdown("<h3>Features</h3>",unsafe_allow_html=True)
-
-    st.markdown("<b>Disease Prediction: </b>Receive early warnings for diabetes and heart diseases based on your health data.",unsafe_allow_html=True)
-    st.markdown("<b>Personalized Insights: </b>Understand your risk factors and get tailored advice to improve your health.",unsafe_allow_html=True)
-    st.markdown("<b>User-Friendly Interface: </b>Enjoy a seamless experience with our intuitive design and easy-to-navigate interface.",unsafe_allow_html=True)
-    st.markdown("<b>Data Privacy:</b> Your health data is securely stored and used only for the purpose of providing accurate predictions.",unsafe_allow_html=True)
-
-    st.markdown("<h3>Why Choose HealthPredict?</h3>",unsafe_allow_html=True)
-    st.markdown("<b>Accuracy: </b>Our app uses state-of-the-art Machine Learning models trained on extensive datasets to ensure high accuracy in disease prediction.",unsafe_allow_html=True)
-    st.markdown("<b>Proactive Health Management: </b>By identifying potential health issues early, you can take preventive measures and seek medical advice when necessary.",unsafe_allow_html=True)
-    st.markdown("<b>Continuous Improvement: </b>We are committed to regularly updating our algorithms and features to provide the best possible service to our users.",unsafe_allow_html=True)
+    st.markdown("")
     st.markdown("<h6><center>Copyright © Vasantha Raj - All rights reserved</center></h6>",unsafe_allow_html=True)
 
 
