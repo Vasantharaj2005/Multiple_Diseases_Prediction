@@ -231,8 +231,9 @@ if select == 'Chronic Kidney Disease Prediction':
         # input_data_as_dataframe = pd.DataFrame([input_data],columns = features)
         # scaler = StandardScaler()
         # std_data = scaler.transform(input_data_as_dataframe)
-        user_input = np.array(input_data)
-        input_data_reshaped = user_input.reshape(1,-1)
+        # user_input = np.array(input_data)
+        # input_data_reshaped = user_input.reshape(1,-1)
+        input_data_reshaped = np.array(input_data).reshape(1, -1)
         prediction = kidney_model.predict(input_data_reshaped)
         if(prediction[0]==1):
             st.error("The person is affcted by the Chronic kidney Diseases")
