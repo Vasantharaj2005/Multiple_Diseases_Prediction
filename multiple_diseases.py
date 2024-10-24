@@ -245,6 +245,7 @@ if select == "About":
     st.markdown("<b>Diabetes Prediction: </b>This feature checks if you are at risk of diabetes based on factors like blood sugar levels, age, weight, and more. It helps you know early if you should take action to manage your health.",unsafe_allow_html=True)
     st.markdown("<b>Heart Disease Prediction: </b>The app looks at things like cholesterol, blood pressure, and heart rate to tell if you may be at risk of heart disease. Knowing this can help you make lifestyle changes or consult a doctor.",unsafe_allow_html=True)
     st.markdown("<b>Parkinson’s Disease Prediction: </b>Parkinson’s is a disease that affects movement and coordination. The app analyzes symptoms like tremors or slow movements to check if you might be at risk. Early detection can help you take steps for better treatment.",unsafe_allow_html=True)
+    st.markdown("<b>Chronic Kidney Disease Prediction: </b>Chronic Kidney Disease (CKD) is a condition where the kidneys gradually lose their ability to filter waste from the blood. This app analyzes symptoms such as fatigue, swelling, or changes in urination to assess your risk of CKD. Early detection allows for timely intervention, helping you manage the disease and improve long-term health outcomes.",unsafe_allow_html = True)
 
     st.markdown("<h3>How It Works :</h3>",unsafe_allow_html=True)
     st.markdown("<li>You enter your health information into the app (like blood sugar, blood pressure, etc.).</li>",unsafe_allow_html=True)
@@ -252,7 +253,7 @@ if select == "About":
     st.markdown("<li>Based on the results, you can decide to visit a doctor or make lifestyle changes</li>",unsafe_allow_html=True)
 
     st.markdown("<h3>Why Use the App?</h3>",unsafe_allow_html=True)
-    st.markdown("<li>Get quick and easy predictions for diabetes, heart disease, and Parkinson’s.</li>",unsafe_allow_html=True)
+    st.markdown("<li>Get quick and easy predictions for diabetes, heart disease, Kidney diseases and Parkinson’s.</li>",unsafe_allow_html=True)
     st.markdown("<li>Find out early if you are at risk and take steps to improve your health.</li>",unsafe_allow_html=True)
     st.markdown("<li>Keep track of your health by checking regularly.</li>",unsafe_allow_html=True)
     st.markdown("<li>Use the information to make better health decisions.</li>",unsafe_allow_html=True)
