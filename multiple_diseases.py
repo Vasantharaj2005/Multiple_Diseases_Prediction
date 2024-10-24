@@ -226,7 +226,7 @@ if select == 'Chronic Kidney Disease Prediction':
         Htn = st.text_input('Hypertension',placeholder = 'e.g. 1 (Yes) or 0(No)')
 
     if st.button('Kidney Disease Test Result'):
-        input_data = ['Bp','Sg','Al','Su','Rbc','Bu','Sc','Sod','Pot','Hemo','Wbcc','Rbcc','Htn']
+        input_data = [Bp,Sg,Al,Su,Rbc,Bu,Sc,Sod,Pot,Hemo,Wbcc,Rbcc,Htn]
         user_input = [float(x) for x in input_data]
         prediction = kidney_model.predict([user_input])
         if(prediction[0]==1):
