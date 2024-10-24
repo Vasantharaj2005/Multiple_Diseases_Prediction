@@ -177,7 +177,7 @@ if select == 'Parknison Prediction':
     with col2:
         PPE = st.text_input('PPE',placeholder = 'PPE')
 
-    if st.button('Heart Disease Test Result'):
+    if st.button('Parkisons Disease Test Result'):
 
         user_input = [Fo,Fhi,Flo,Jitter,Abs,RAP,PPQ,DDP,Shimmer,db,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]
         user_input = np.array(user_input)
@@ -226,8 +226,12 @@ if select == 'Chronic Kidney Disease Prediction':
         Htn = st.text_input('Hypertension',placeholder = 'e.g. 1 (Yes) or 0(No)')
 
     if st.button('Kidney Disease Test Result'):
-        user_input = ['Bp','Sg','Al','Su','Rbc','Bu','Sc','Sod','Pot','Hemo','Wbcc','Rbcc','Htn']
-        user_input = np.array(user_input)
+        input_data = ['Bp','Sg','Al','Su','Rbc','Bu','Sc','Sod','Pot','Hemo','Wbcc','Rbcc','Htn']
+        # features = ['Bp','Sg','Al','Su','Rbc','Bu','Sc','Sod','Pot','Hemo','Wbcc','Rbcc','Htn']
+        # input_data_as_dataframe = pd.DataFrame([input_data],columns = features)
+        # scaler = StandardScaler()
+        # std_data = scaler.transform(input_data_as_dataframe)
+        user_input = np.array(input_data)
         input_data_reshaped = user_input.reshape(1,-1)
         prediction = kidney_model.predict(input_data_reshaped)
         if(prediction[0]==1):
